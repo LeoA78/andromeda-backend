@@ -14,14 +14,20 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @Entity
-@SQLDelete(sql = "UPDATE orders SET deleted = true WHERE order_id=?")
+@SQLDelete(sql = "UPDATE order_details SET deleted = true WHERE order_detail_id=?")
 @Where(clause = "deleted=false")
-@Table(name = "orders")
-public class Order implements Serializable {
+@Table(name = "order_details")
+public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "order_detail_id")
     private Long id;
+
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
+
+    @Column(name = "price", nullable = false)
+    private Double price;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
