@@ -43,9 +43,6 @@ public class Address implements Serializable {
     @Column(name = "province", nullable = false, length = 30)
     private String province;
 
-    @Column(name = "country", nullable = false, length = 30)
-    private String country;
-
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
