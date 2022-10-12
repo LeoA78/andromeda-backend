@@ -7,6 +7,8 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -49,5 +51,11 @@ public class User implements Serializable {
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Address> addressesList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> ordersList = new ArrayList<>();
 
 }

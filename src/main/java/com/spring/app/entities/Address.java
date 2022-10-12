@@ -7,6 +7,8 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,5 +49,11 @@ public class Address implements Serializable {
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "address")
+    private List<Order> ordersList = new ArrayList<>();
 
 }

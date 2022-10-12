@@ -7,6 +7,8 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,4 +30,15 @@ public class Order implements Serializable {
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetailsList = new ArrayList<>();
 }

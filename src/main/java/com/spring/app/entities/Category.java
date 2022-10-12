@@ -6,6 +6,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,4 +29,7 @@ public class Category implements Serializable {
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> productsList = new ArrayList<>();
 }
