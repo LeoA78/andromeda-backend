@@ -142,8 +142,16 @@ public class ProductServiceImpl implements IProductService {
             throw new RuntimeException("Product to update not found");
         }
 
+        CategoryResponseDTO categoryResponse = categoryService.findCategoryByName(productDTO.getCategoryName());
+        Category categoryByName = categoryMapper.responseDtoToEntity(categoryResponse);
+
+        if (categoryByName == null) {
+            throw new BadRequestException("Cannot create a category without an associated customer");
+        }
+
         Product product = productMapper.requestDtoToEntity(productDTO);
         product.setId(id);
+        product.setCategory(categoryByName);
 
         Product updatedProduct = productRepository.save(product);
 

@@ -39,5 +39,5 @@ public class ProductResponseDTO implements Serializable {
     private String imageUrl;
 
     @ApiModelProperty(position = 6, required = true, notes = "The category id is required.")
-    private Category category;
+    private CategoryResponseDTO category;
 }

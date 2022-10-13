@@ -1,5 +1,6 @@
 package com.spring.app.dtos.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -21,6 +22,7 @@ import java.util.List;
 public class DataResponseDTO<ResponseDTO> implements Serializable {
 
     @ApiModelProperty(position = 1, required = true)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:MM:SS")
     private LocalDateTime timestamp;
 
     @ApiModelProperty(position = 2, required = true)
@@ -36,6 +38,6 @@ public class DataResponseDTO<ResponseDTO> implements Serializable {
     private String path;
 
     @ApiModelProperty(position = 6, required = true)
-    private List<ResponseDTO> data;
+    private ResponseDTO data;
 
 }
