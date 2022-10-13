@@ -1,9 +1,7 @@
 package com.spring.app.controllers;
 
 import com.spring.app.dtos.request.ProductDTO;
-import com.spring.app.dtos.request.ProductDTO;
 import com.spring.app.dtos.response.*;
-import com.spring.app.dtos.response.ProductResponseDTO;
 import com.spring.app.dtos.response.ProductResponseDTO;
 import com.spring.app.services.IProductService;
 import io.swagger.annotations.*;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @Api(value = "Product Api", tags = {"Product Service"})
@@ -91,9 +88,47 @@ public class ProductController {
         result.setResponseCode(HttpStatus.OK.value());
         result.setStatus("SUCCESS");
         result.setMessage("OK");
-        result.setPath("/product/id");
+        result.setPath("/product/" + id);
 
         return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/category/{category}")
+    @ApiOperation(
+            value = "Retrieves all Lists Products",
+            httpMethod = "GET",
+            response = ProductResponseDTO[].class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 200,
+                    message = "Body content with information about an product list",
+                    response = ProductResponseDTO[].class),
+            @ApiResponse(
+                    code = 404,
+                    message = "Information about an product list not found")
+    })
+    public ResponseEntity<DataResponseDTO<PagesResponseDTO<ProductResponseDTO>>> getProductsByCategory(
+            @ApiParam(name = "category", required = true, value = "Category", example = "Deportivo")
+            @PathVariable("category") String category,
+            @ApiParam(value = "Page to display", required = true, example = "0")
+            @RequestParam(value = "page", defaultValue = "0", required = false) Integer page,
+            @ApiParam(value = "Number of elements per page", required = true, example = "10")
+            @RequestParam(value = "size", defaultValue = "10", required = false) Integer size) {
+
+        PagesResponseDTO<ProductResponseDTO> productsList = productService.findProductsByCategory(page, size,category);
+
+        DataResponseDTO<PagesResponseDTO<ProductResponseDTO>> result = new DataResponseDTO<>();
+
+        result.setTimestamp(LocalDateTime.now());
+        result.setData(productsList);
+        result.setResponseCode(HttpStatus.OK.value());
+        result.setStatus("SUCCESS");
+        result.setMessage("OK");
+        result.setPath("/product/" + category);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+
     }
 
 
