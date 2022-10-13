@@ -40,7 +40,7 @@ public class ProductDTO {
 
     @ApiModelProperty(position = 6, required = true, notes = "The category is required.")
     @NotNull(message = "Cannot be null")
-    private Long categoryId;
+    private String categoryName;
 
 
 }
