@@ -14,6 +14,7 @@ import com.spring.app.repositories.IUserRepository;
 import com.spring.app.services.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,9 +48,11 @@ public class UserServiceImpl implements IUserService {
 
         User userDataBase = findUserByEmail(userLoginDTO.getEmail());
 
-        if(userDataBase == null || !Objects.equals(userDataBase.getPassword(), userLoginDTO.getPassword())){
+        if(userDataBase == null || !BCrypt.checkpw(userLoginDTO.getPassword(), userDataBase.getPassword())){
             throw new NotFoundException("The email or password are not valid");
         }
+
+
 
         return userMapper.entityToLoginResponseDto(userDataBase);
 
@@ -65,13 +68,17 @@ public class UserServiceImpl implements IUserService {
 
         User userToRegister = userMapper.requestDtoToEntity(userRegisterDTO);
 
+        //Encriptamos la clave
+        String password_hash = BCrypt.hashpw(userToRegister.getPassword(), BCrypt.gensalt(10));
+        userToRegister.setPassword(password_hash);
+
         Address address = addressMapper.requestDtoToEntity(userRegisterDTO.getAddress());
         userToRegister.setAddress(address);
         userToRegister.setCreatedAt(LocalDateTime.now());
 
 
-        User savedUser = userRepository.save(userToRegister);
 
+        User savedUser = userRepository.save(userToRegister);
         return userMapper.entityToResponseDto(savedUser);
     }
 

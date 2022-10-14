@@ -54,12 +54,12 @@ public class UserController {
 
         result.setTimestamp(LocalDateTime.now());
         result.setData(userLoginResponseDTO);
-        result.setResponseCode(HttpStatus.CREATED.value());
+        result.setResponseCode(HttpStatus.OK.value());
         result.setStatus("SUCCESS");
         result.setMessage("OK");
         result.setPath("/user/login");
 
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping(value = "/register", produces = {MediaType.APPLICATION_JSON_VALUE})
