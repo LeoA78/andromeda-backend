@@ -1,6 +1,6 @@
 package com.spring.app.dtos.request;
 
-import com.spring.app.entities.OrderDetail;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -26,12 +26,8 @@ public class OrderDTO {
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$", message= "Invalid email")
     private String userEmail;
 
-    @ApiModelProperty(position = 2, required = true, notes = "The address id is required.")
-    @NotNull(message = "Cannot be null")
-    private Long addressId;
-
     @ApiModelProperty(position = 3, required = true, notes = "Cart is required.")
-    @NotNull(message = "Cannot be null")
+    //@NotNull(message = "Cannot be null")
     private List<OrderDetailDTO> cart = new ArrayList<>();
 
 }

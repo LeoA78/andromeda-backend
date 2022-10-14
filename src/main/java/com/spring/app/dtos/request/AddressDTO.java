@@ -34,17 +34,4 @@ public class AddressDTO implements Serializable {
     @NotNull
     private String postcode;
 
-    @ApiModelProperty(position = 5, required = true, notes = "The city is required.")
-    @NotNull
-    private String city;
-
-    @ApiModelProperty(position = 6, required = true, notes = "The province is required.")
-    @NotNull
-    private String province;
-
-    @ApiModelProperty(position = 7, required = true, notes = "The email is required.")
-    @NotNull(message = "Cannot be null")
-    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$", message= "Invalid email")
-    private String userEmail;
-
 }

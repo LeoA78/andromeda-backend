@@ -35,10 +35,6 @@ public class Order implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
-
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetailsList = new ArrayList<>();
 }

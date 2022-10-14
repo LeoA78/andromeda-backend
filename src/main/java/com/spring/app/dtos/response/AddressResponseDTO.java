@@ -32,10 +32,4 @@ public class AddressResponseDTO implements Serializable {
     @ApiModelProperty(position = 4, notes = "The postal code is required.")
     private String postCode;
 
-    @ApiModelProperty(position = 5, notes = "The city is required.")
-    private String city;
-
-    @ApiModelProperty(position = 6, notes = "The province is required.")
-    private String province;
-
 }

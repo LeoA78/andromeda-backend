@@ -37,23 +37,21 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false, length = 64)
     private String password;
 
-    @Column(name = "date_of_birth", nullable = false)
-    private LocalDateTime dateOfBirth;
-
     @Column(name = "is_verify", nullable = false)
     private Boolean isVerify = false;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Address> addressesList = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     @OneToMany(mappedBy = "user")
     private List<Order> ordersList = new ArrayList<>();

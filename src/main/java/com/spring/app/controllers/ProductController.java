@@ -43,8 +43,6 @@ public class ProductController {
             @ApiParam(value = "Number of elements per page", required = true, example = "10")
             @RequestParam(value = "size", defaultValue = "10", required = false) Integer size) {
 
-
-
         PagesResponseDTO<ProductResponseDTO> productsList = productService.findAllProducts(page, size);
 
         DataResponseDTO<PagesResponseDTO<ProductResponseDTO>> result = new DataResponseDTO<>();
@@ -131,7 +129,6 @@ public class ProductController {
 
     }
 
-
     @PostMapping(value = "/add", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(
             value = "Retrieves data associated to List Master by Id",
@@ -164,7 +161,6 @@ public class ProductController {
 
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-
 
     @PutMapping(value = "/update/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(
@@ -201,7 +197,6 @@ public class ProductController {
 
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-
 
     @DeleteMapping (value = "/delete/{id}")
     @ApiOperation(

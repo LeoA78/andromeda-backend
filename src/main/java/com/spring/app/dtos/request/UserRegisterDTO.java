@@ -6,7 +6,6 @@ import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -36,12 +35,8 @@ public class UserRegisterDTO {
     @NotNull(message = "Cannot be null")
     private String password;
 
-    @ApiModelProperty(position = 5, required = true, notes = "The date of birth is required.")
-    @NotNull(message = "Cannot be null")
-    private LocalDateTime dateOfBirth;
-
-    @ApiModelProperty(position = 6, required = true, notes = "Address is required.")
-    @NotNull(message = "Cannot be null")
+    @ApiModelProperty(position = 5, required = true, notes = "Address is required.")
+    //@NotNull(message = "Cannot be null")
     private AddressDTO address;
 
 
