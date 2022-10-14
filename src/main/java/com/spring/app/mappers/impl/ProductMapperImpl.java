@@ -24,4 +24,9 @@ public class ProductMapperImpl implements IProductMapper {
         return modelMapper.map(requestDto, Product.class);
     }
 
+    @Override
+    public Product responseDtoToEntity(ProductResponseDTO responseDto) {
+        return modelMapper.map(responseDto, Product.class);
+    }
+
 }

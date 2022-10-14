@@ -31,10 +31,13 @@ public class Order implements Serializable {
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
+    @Column(name = "total")
+    private Double total;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order")
     private List<OrderDetail> orderDetailsList = new ArrayList<>();
 }

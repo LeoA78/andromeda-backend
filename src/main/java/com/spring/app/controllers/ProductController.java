@@ -154,10 +154,10 @@ public class ProductController {
 
         result.setTimestamp(LocalDateTime.now());
         result.setData(productResponseDTO);
-        result.setResponseCode(HttpStatus.OK.value());
+        result.setResponseCode(HttpStatus.CREATED.value());
         result.setStatus("SUCCESS");
         result.setMessage("OK");
-        result.setPath("/product/id");
+        result.setPath("/product/");
 
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }

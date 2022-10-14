@@ -21,7 +21,7 @@ import java.io.Serializable;
 )
 public class ProductResponseDTO implements Serializable {
 
-    private Long productId;
+    private Long id;
 
     @ApiModelProperty(position = 1, required = true, notes = "The name is required.")
     private String name;
