@@ -1,11 +1,9 @@
 package com.spring.app.dtos.response;
 
-import com.spring.app.entities.Category;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 

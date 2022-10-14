@@ -1,4 +1,4 @@
-package com.spring.app.mappers.impl;
+package com.spring.app.mappers;
 
 import com.spring.app.dtos.request.AddressDTO;
 import com.spring.app.entities.Address;

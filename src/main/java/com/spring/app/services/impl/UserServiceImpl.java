@@ -9,7 +9,7 @@ import com.spring.app.entities.User;
 import com.spring.app.exceptions.customsExceptions.BadRequestException;
 import com.spring.app.exceptions.customsExceptions.NotFoundException;
 import com.spring.app.mappers.IUserMapper;
-import com.spring.app.mappers.impl.IAddressMapper;
+import com.spring.app.mappers.IAddressMapper;
 import com.spring.app.repositories.IUserRepository;
 import com.spring.app.services.IUserService;
 import lombok.AllArgsConstructor;
