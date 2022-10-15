@@ -11,6 +11,7 @@ import com.spring.app.exceptions.customsExceptions.NotFoundException;
 import com.spring.app.mappers.IUserMapper;
 import com.spring.app.mappers.IAddressMapper;
 import com.spring.app.repositories.IUserRepository;
+import com.spring.app.services.IEmailService;
 import com.spring.app.services.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IAddressMapper addressMapper;
+
+    @Autowired
+    private IEmailService emailService;
 
     @Override
     public User findUserByEmail(String email) {
@@ -79,6 +83,9 @@ public class UserServiceImpl implements IUserService {
 
 
         User savedUser = userRepository.save(userToRegister);
+
+        emailService.sendEmail("altamiranopedroleonel@outlook.com","Mail de prueba", "Este es un mail de prueba para corroborar la verificación de usuario");
+
         return userMapper.entityToResponseDto(savedUser);
     }
 

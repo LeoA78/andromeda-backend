@@ -21,6 +21,20 @@ spring:
     init:
       mode: always
       data-locations: classpath:data.sql
+  mail:
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: 'true'
+            required: 'true'
+          auth: 'true'
+          quitwait: 'false'
+    host: smtp.mailgun.org
+    username: postmaster@sandbox0de8e9c61e504df2aa667c12ddfe85d3.mailgun.org
+    protocol: smtp
+    password: 39727c038e33be1737f0bbe3e8309261-b0ed5083-8545c768
+    port: '587'
 
 # Swagger settings.
 springfox:
