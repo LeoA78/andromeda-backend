@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class AddressMapperImpl implements com.spring.app.mappers.impl.IAddressMapper {
+public class AddressMapperImpl implements com.spring.app.mappers.IAddressMapper {
 
     private final ModelMapper modelMapper;
 
