@@ -1,11 +1,8 @@
 package com.spring.app.controllers;
 
-import com.spring.app.dtos.request.ProductDTO;
 import com.spring.app.dtos.request.UserLoginDTO;
 import com.spring.app.dtos.request.UserRegisterDTO;
 import com.spring.app.dtos.response.DataResponseDTO;
-import com.spring.app.dtos.response.ProductResponseDTO;
-import com.spring.app.dtos.response.UserLoginResponseDTO;
 import com.spring.app.dtos.response.UserResponseDTO;
 import com.spring.app.services.IUserService;
 import io.swagger.annotations.*;
@@ -33,27 +30,27 @@ public class UserController {
     @ApiOperation(
             value = "Retrieves data associated to user Logged in",
             httpMethod = "POST",
-            response = UserLoginResponseDTO.class
+            response = UserResponseDTO.class
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 201,
                     message = "Body content with information about a successfully user logged in",
-                    response = UserLoginResponseDTO.class),
+                    response = UserResponseDTO.class),
             @ApiResponse(
                     code = 400,
                     message = "Information about an error login")
     })
-    public ResponseEntity<DataResponseDTO<UserLoginResponseDTO>> userLogin(
+    public ResponseEntity<DataResponseDTO<UserResponseDTO>> userLogin(
             @ApiParam(name = "user", required = true, value = "User")
             @Valid @RequestBody UserLoginDTO user) {
 
-        UserLoginResponseDTO userLoginResponseDTO = userService.userLogin(user);
+        UserResponseDTO userResponseDTO = userService.userLogin(user);
 
-        DataResponseDTO<UserLoginResponseDTO> result = new DataResponseDTO<>();
+        DataResponseDTO<UserResponseDTO> result = new DataResponseDTO<>();
 
         result.setTimestamp(LocalDateTime.now());
-        result.setData(userLoginResponseDTO);
+        result.setData(userResponseDTO);
         result.setResponseCode(HttpStatus.OK.value());
         result.setStatus("SUCCESS");
         result.setMessage("OK");
@@ -70,7 +67,7 @@ public class UserController {
     )
     @ApiResponses(value = {
             @ApiResponse(
-                    code = 201,
+                    code = 200,
                     message = "Body content with information about a successfully registered user",
                     response = UserResponseDTO.class),
             @ApiResponse(

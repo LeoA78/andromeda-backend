@@ -2,7 +2,6 @@ package com.spring.app.mappers.impl;
 
 import com.spring.app.dtos.request.UserLoginDTO;
 import com.spring.app.dtos.request.UserRegisterDTO;
-import com.spring.app.dtos.response.UserLoginResponseDTO;
 import com.spring.app.dtos.response.UserResponseDTO;
 import com.spring.app.entities.User;
 import com.spring.app.mappers.IUserMapper;
@@ -31,10 +30,6 @@ public class UserMapperImpl implements IUserMapper {
         return modelMapper.map(requestDto, User.class);
     }
 
-    @Override
-    public UserLoginResponseDTO entityToLoginResponseDto(User entity) {
-        return modelMapper.map(entity, UserLoginResponseDTO.class);
-    }
 
 
 }

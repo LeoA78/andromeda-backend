@@ -28,7 +28,7 @@ public class UserRegisterDTO {
 
     @ApiModelProperty(position = 3, required = true, notes = "The email is required.")
     @NotNull(message = "Cannot be null")
-    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$", message= "Invalid email")
+    @Pattern(regexp = "^(([^<>()\\[\\]\\\\.,;:\\s@”]+(\\.[^<>()\\[\\]\\\\.,;:\\s@”]+)*)|(“.+”))@((\\[[0–9]{1,3}\\.[0–9]{1,3}\\.[0–9]{1,3}\\.[0–9]{1,3}])|(([a-zA-Z\\-0–9]+\\.)+[a-zA-Z]{2,}))$", message= "Invalid email")
     private String email;
 
     @ApiModelProperty(position = 4, required = true, notes = "The password is required.")

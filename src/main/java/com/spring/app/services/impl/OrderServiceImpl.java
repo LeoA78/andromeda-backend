@@ -8,6 +8,7 @@ import com.spring.app.entities.Order;
 import com.spring.app.entities.OrderDetail;
 import com.spring.app.entities.Product;
 import com.spring.app.entities.User;
+import com.spring.app.exceptions.customsExceptions.BadRequestException;
 import com.spring.app.exceptions.customsExceptions.NotFoundException;
 import com.spring.app.mappers.IOrderMapper;
 import com.spring.app.mappers.IProductMapper;
@@ -55,6 +56,10 @@ public class OrderServiceImpl implements IOrderService {
 
         List<OrderDetail> orderDetailList = new ArrayList<>();
 
+        if(orderDTO.getCart().isEmpty()){
+            throw new BadRequestException("El carrito no puede estar vacío.");
+        }
+
         Order orderToCreate = new Order();
 
         Double orderTotal = (double) 0;
@@ -73,7 +78,7 @@ public class OrderServiceImpl implements IOrderService {
             }
 
             if(orderDetailRequest.getQuantity() > product.getStock()){
-                throw new NotFoundException("There is no stock for any of the products");
+                throw new NotFoundException("Alguno de los productos no tiene stock.");
             }
 
             OrderDetail orderDetail = new OrderDetail();

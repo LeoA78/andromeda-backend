@@ -2,7 +2,6 @@ package com.spring.app.services.impl;
 
 import com.spring.app.dtos.request.UserLoginDTO;
 import com.spring.app.dtos.request.UserRegisterDTO;
-import com.spring.app.dtos.response.UserLoginResponseDTO;
 import com.spring.app.dtos.response.UserResponseDTO;
 import com.spring.app.entities.Address;
 import com.spring.app.entities.User;
@@ -41,24 +40,24 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User findUserByEmail(String email) {
         if (Objects.equals(email, "")) {
-            throw new BadRequestException("the email cannot be empty.");
+            throw new BadRequestException("El email no puede estar vacío.");
         }
         return userRepository.findByEmail(email);
 
     }
 
     @Override
-    public UserLoginResponseDTO userLogin(UserLoginDTO userLoginDTO){
+    public UserResponseDTO userLogin(UserLoginDTO userLoginDTO){
 
         User userDataBase = findUserByEmail(userLoginDTO.getEmail());
 
         if(userDataBase == null || !BCrypt.checkpw(userLoginDTO.getPassword(), userDataBase.getPassword())){
-            throw new NotFoundException("The email or password are not valid");
+            throw new NotFoundException("El usuario o la contraseña son incorrectos.");
         }
 
 
 
-        return userMapper.entityToLoginResponseDto(userDataBase);
+        return userMapper.entityToResponseDto(userDataBase);
 
     }
 
@@ -67,7 +66,7 @@ public class UserServiceImpl implements IUserService {
         User userDataBase = findUserByEmail(userRegisterDTO.getEmail());
 
         if(userDataBase != null){
-            throw new BadRequestException("User email already exist");
+            throw new BadRequestException("El email utilizado no está disponible.");
         }
 
         User userToRegister = userMapper.requestDtoToEntity(userRegisterDTO);
@@ -84,7 +83,7 @@ public class UserServiceImpl implements IUserService {
 
         User savedUser = userRepository.save(userToRegister);
 
-        emailService.sendEmail("altamiranopedroleonel@outlook.com","Mail de prueba", "Este es un mail de prueba para corroborar la verificación de usuario");
+        //emailService.sendEmail("altamiranopedroleonel@outlook.com","Registro Andromeda Store", "Gracias por registrarte en nuestro sitio web. Por favor verifica tu usuario para poder disfrutar de la tienda. \nUsuario: " + savedUser.getName() + " \nemail: " + savedUser.getEmail());
 
         return userMapper.entityToResponseDto(savedUser);
     }
