@@ -43,4 +43,11 @@ public class OrderDetail implements Serializable {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Override
+    public String toString() {
+        return "\n" +
+                "Nombre: " + product.getName() +
+                " - Cantidad: " + quantity +
+                " - Total: " + price * quantity;
+    }
 }

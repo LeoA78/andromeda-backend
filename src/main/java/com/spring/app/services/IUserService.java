@@ -12,4 +12,6 @@ public interface IUserService {
     UserResponseDTO userLogin(UserLoginDTO userLoginDTO);
 
     UserResponseDTO userRegister(UserRegisterDTO userRegisterDTO);
+
+    UserResponseDTO verifyUser(String email);
 }

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,6 +40,9 @@ public class User implements Serializable {
 
     @Column(name = "is_verify", nullable = false)
     private Boolean isVerify = false;
+
+    @Column(name= "token", nullable = false)
+    private String token = UUID.randomUUID().toString();
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

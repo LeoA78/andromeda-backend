@@ -24,6 +24,7 @@ public class EmailServiceImpl implements IEmailService {
 
             SimpleMailMessage email = new SimpleMailMessage();
 
+            email.setFrom("noreply@andromeda.ed.urltemporal.com");
             email.setTo(to);
             email.setSubject(subject);
             email.setText(content);

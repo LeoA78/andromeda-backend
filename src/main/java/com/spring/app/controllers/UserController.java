@@ -10,10 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -88,6 +85,40 @@ public class UserController {
         result.setStatus("SUCCESS");
         result.setMessage("OK");
         result.setPath("/user/register");
+
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
+
+    @PutMapping(value = "/verify", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiOperation(
+            value = "Retrieves data associated to verify user",
+            httpMethod = "PUT",
+            response = UserResponseDTO.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 201,
+                    message = "Body content with information about a successfully verified user",
+                    response = UserResponseDTO.class),
+            @ApiResponse(
+                    code = 400,
+                    message = "information about an error when verifying")
+    })
+    public ResponseEntity<DataResponseDTO<UserResponseDTO>> verifyUser(
+            @ApiParam(name = "token", required = true, value = "Token")
+            @Valid @RequestBody String token) {
+
+        UserResponseDTO userResponseDTO = userService.verifyUser(token);
+
+        DataResponseDTO<UserResponseDTO> result = new DataResponseDTO<>();
+
+        result.setTimestamp(LocalDateTime.now());
+        result.setData(userResponseDTO);
+        result.setResponseCode(HttpStatus.CREATED.value());
+        result.setStatus("SUCCESS");
+        result.setMessage("OK");
+        result.setPath("/user/verify");
 
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }

@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Service
@@ -55,6 +56,10 @@ public class UserServiceImpl implements IUserService {
             throw new NotFoundException("El usuario o la contraseña son incorrectos.");
         }
 
+        if(!userDataBase.getIsVerify()){
+            throw new BadRequestException("Por favor verifica tu usuario para poder ingresar.");
+        }
+
 
 
         return userMapper.entityToResponseDto(userDataBase);
@@ -83,9 +88,37 @@ public class UserServiceImpl implements IUserService {
 
         User savedUser = userRepository.save(userToRegister);
 
-        //emailService.sendEmail("altamiranopedroleonel@outlook.com","Registro Andromeda Store", "Gracias por registrarte en nuestro sitio web. Por favor verifica tu usuario para poder disfrutar de la tienda. \nUsuario: " + savedUser.getName() + " \nemail: " + savedUser.getEmail());
+        String content = " Gracias por registrarte en nuestro sitio web. Por favor verifica tu usuario para poder disfrutar de la tienda. " +
+                "\n Usuario: " + savedUser.getName()  +
+                "\n Email: " + savedUser.getEmail() +
+                "\n Haz click en el enlace para verificar tu usuario. " +
+                "\n http://localhost:3000/verify/" + savedUser.getToken();
+
+        emailService.sendEmail(savedUser.getEmail(), "Registro Andromeda Store", content);
 
         return userMapper.entityToResponseDto(savedUser);
+    }
+
+    @Override
+    public UserResponseDTO verifyUser(String token){
+
+        User userDataBase = userRepository.findByToken(token);
+
+        if(userDataBase == null){
+            throw new BadRequestException("Error al verificar el usuario");
+        }
+
+        if(userDataBase.getIsVerify()){
+            throw new BadRequestException("El usuario ya está verificado");
+        }
+
+        userDataBase.setIsVerify(true);
+        userDataBase.setToken(UUID.randomUUID().toString());
+
+        User updatedUser = userRepository.save(userDataBase);
+
+        return userMapper.entityToResponseDto(updatedUser);
+
     }
 
 
