@@ -93,7 +93,6 @@ public class ProductServiceImpl implements IProductService {
         CategoryResponseDTO categoryResponseDTO = categoryService.findCategoryByName(category);
         Category filteredCategory = categoryMapper.responseDtoToEntity(categoryResponseDTO);
 
-        System.out.println(filteredCategory.getProductsList());
 
         Pageable pageable = PageRequest.of(page, size);
 

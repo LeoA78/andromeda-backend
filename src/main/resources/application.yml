@@ -21,6 +21,20 @@ spring:
     init:
       mode: always
       data-locations: classpath:data.sql
+  mail:
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: 'true'
+            required: 'true'
+          auth: 'true'
+          quitwait: 'false'
+    host: mail.andromeda.ed.urltemporal.com
+    username: noreply@andromeda.ed.urltemporal.com
+    protocol: smtp
+    password: sbyE)lIgN1NQ
+    port: '587'
 
 # Swagger settings.
 springfox:

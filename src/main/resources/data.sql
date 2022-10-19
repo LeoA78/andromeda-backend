@@ -15,7 +15,7 @@ SELECT 1, 4, 'Zapatillas Adidas', 16900, 'Adidas Galaxy 5 Hombre Adultos', 'http
 WHERE NOT EXISTS (SELECT * FROM `products` WHERE product_id = 1);
 
 INSERT INTO `andromeda`.`products` (`product_id`, `category_id`, `name`, `unit_price`,`description`, `image_url`, `stock`, `deleted`)
-SELECT 2, 2, 'Jogging', 8690, 'Jogging Hombre Sport 154 - Con Cierre - Ghy Polo Club', 'https://http2.mlstatic.com/D_NQ_NP_975859-MLA46489359055_062021-W.webp', 60, 0
+SELECT 2, 2, 'Jogging', 8690, 'Jogging Hombre Sport 154 - Con Cierre - Ghy Polo Club', 'https://http2.mlstatic.com/D_NQ_NP_975859-MLA46489359055_062021-W.webp', 0, 0
 WHERE NOT EXISTS (SELECT * FROM `products` WHERE product_id = 2);
 
 INSERT INTO `andromeda`.`products` (`product_id`, `category_id`, `name`, `unit_price`,`description`, `image_url`, `stock`, `deleted`)
@@ -39,7 +39,7 @@ SELECT 7, 4, 'Short De Running', 1800, 'Short De Running - Unisex - Gdo Running 
 WHERE NOT EXISTS (SELECT * FROM `products` WHERE product_id = 7);
 
 INSERT INTO `andromeda`.`products` (`product_id`, `category_id`, `name`, `unit_price`,`description`, `image_url`, `stock`, `deleted`)
-SELECT 8, 1, 'Canguro Peluche', 4590, 'Pack X 2 Canguro Peluche Bifaz De Mujer Oferta Envío Gratis', 'https://http2.mlstatic.com/D_NQ_NP_989964-MLA45256400565_032021-O.webp', 24, 0
+SELECT 8, 1, 'Canguro Peluche', 4590, 'Pack X 2 Canguro Peluche Bifaz De Mujer Oferta Envío Gratis', 'https://http2.mlstatic.com/D_NQ_NP_989964-MLA45256400565_032021-O.webp', 0, 0
 WHERE NOT EXISTS (SELECT * FROM `products` WHERE product_id = 8);
 
 INSERT INTO `andromeda`.`products` (`product_id`, `category_id`, `name`, `unit_price`,`description`, `image_url`, `stock`, `deleted`)

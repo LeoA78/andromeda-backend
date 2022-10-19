@@ -28,7 +28,10 @@ public class UserResponseDTO implements Serializable {
     @ApiModelProperty(position = 3, required = true, notes = "The email is required.")
     private String email;
 
-    @ApiModelProperty(position = 4, required = true, notes = "The category id is required.")
+    @ApiModelProperty(position = 4, required = true, notes = "The verify status is required.")
+    private Boolean isVerify;
+
+    @ApiModelProperty(position = 5, required = true, notes = "The category id is required.")
     private AddressResponseDTO address;
 
 }

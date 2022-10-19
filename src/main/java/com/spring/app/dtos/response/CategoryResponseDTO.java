@@ -18,7 +18,7 @@ import java.io.Serializable;
 )
 public class CategoryResponseDTO implements Serializable {
     @ApiModelProperty(position = 1, required = true, notes = "The category id is required.")
-    private Long categoryId;
+    private Long id;
 
     @ApiModelProperty(position = 2, required = true, notes = "The name is required.")
     private String name;
