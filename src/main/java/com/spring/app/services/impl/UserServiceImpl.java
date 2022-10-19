@@ -89,7 +89,7 @@ public class UserServiceImpl implements IUserService {
         User savedUser = userRepository.save(userToRegister);
 
         String content = " Gracias por registrarte en nuestro sitio web. Por favor verifica tu usuario para poder disfrutar de la tienda. " +
-                "\n Usuario: " + savedUser.getName()  +
+                "\n Usuario: " + savedUser.getName() + " " + savedUser.getLastName() +
                 "\n Email: " + savedUser.getEmail() +
                 "\n Haz click en el enlace para verificar tu usuario. " +
                 "\n http://localhost:3000/verify/" + savedUser.getToken();

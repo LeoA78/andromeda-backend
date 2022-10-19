@@ -48,6 +48,6 @@ public class OrderDetail implements Serializable {
         return "\n" +
                 "Nombre: " + product.getName() +
                 " - Cantidad: " + quantity +
-                " - Total: " + price * quantity;
+                " - Total: $" + price * quantity;
     }
 }

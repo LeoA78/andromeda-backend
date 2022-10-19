@@ -118,7 +118,7 @@ public class OrderServiceImpl implements IOrderService {
                 "\n Orden de compra: " +
                 "\n " + savedOrder.getOrderDetailsList().toString() +
                 "\n Gastos de envío: GRATIS " +
-                "\n Total de Compra: " + savedOrder.getTotal();
+                "\n Total de Compra: $" + savedOrder.getTotal();
 
         emailService.sendEmail(savedOrder.getUser().getEmail(),"Orden de Compra - Andromeda Store", content);
 
