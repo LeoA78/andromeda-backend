@@ -19,5 +19,8 @@ Este proyecto fué creado utilizando [Spring](https://spring.io/).
 ```
 git clone https://github.com/LeoA78/andromeda-backend.git
 ```
+## Iniciar el servidor
 
-## Instalar dependencias maven
+* Instalar dependencias maven
+* Crear una base de datos llamada andromeda
+* Iniciar el servidor
